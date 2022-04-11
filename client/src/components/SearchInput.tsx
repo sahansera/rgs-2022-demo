@@ -1,7 +1,7 @@
 import { Input } from "@mantine/core";
 import { Search } from 'tabler-icons-react';
 
-import { SearchClient, SearchIndexClient, SearchIndexerClient, AzureKeyCredential } from "@azure/search-documents";
+import { SearchClient, AzureKeyCredential } from "@azure/search-documents";
 
 const searchUrl = process.env.REACT_APP_SEARCH_URL || "";
 const searchKey = process.env.REACT_APP_SEARCH_KEY || "";
