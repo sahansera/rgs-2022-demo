@@ -1,5 +1,5 @@
 import './App.css';
-import { AppShell, Button, Container, Group, Header, MenuLabel, SimpleGrid, Text } from '@mantine/core';
+import { AppShell, Button, Container, Group, Header, Text } from '@mantine/core';
 import { SearchInput } from './components/SearchInput';
 import { CirclePlus } from 'tabler-icons-react';
 import {

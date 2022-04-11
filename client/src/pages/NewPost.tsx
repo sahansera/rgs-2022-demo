@@ -1,4 +1,4 @@
-import { Box, Button, Checkbox, Group, Textarea, TextInput } from "@mantine/core";
+import { Box, Button, Group, Textarea, TextInput } from "@mantine/core";
 import { useForm } from "@mantine/form";
 
 export function NewPost() {
