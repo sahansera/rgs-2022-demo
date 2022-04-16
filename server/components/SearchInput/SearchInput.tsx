@@ -13,11 +13,14 @@ const searchIndex = "posts"
 //   new AzureKeyCredential(searchKey)
 // );
 
-export function SearchInput(): JSX.Element {
+interface Props {
+  onSearch: (query: string) => void;
+}
+
+export function SearchInput({ onSearch }: Props): JSX.Element {
   function search(event: any) {
     if (event.key !== "Enter") { return; }
-
-
+    onSearch(event.target.value);
   }
 
   return (

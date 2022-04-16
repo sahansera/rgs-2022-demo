@@ -37,7 +37,7 @@ export default async function handler(req: any, res: any) {
 
   async function getPosts() {
     const response = await axios.get(
-      `${searchUrl}/indexes/${entityType}/docs?api-version=2021-04-30-Preview&search=*`,
+      `${searchUrl}/indexes/${entityType}/docs?api-version=2021-04-30-Preview&search=${req.query.q}`,
       {
         headers: {
           'Content-Type': 'application/json',

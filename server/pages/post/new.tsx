@@ -3,8 +3,9 @@ import { useForm } from "@mantine/hooks";
 import { showNotification, updateNotification } from "@mantine/notifications";
 import { CircleCheck } from 'tabler-icons-react';
 import { useRouter } from 'next/router';
-const url = "/api/indexer";
 import { v4 as uuidv4 } from 'uuid';
+
+const url = "/api/post";
 
 export default function NewPost() {
   const router = useRouter()

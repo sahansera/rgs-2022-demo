@@ -1,23 +1,25 @@
-import { GetServerSidePropsContext } from 'next';
-import { useState } from 'react';
 import { AppProps } from 'next/app';
-import { getCookie, setCookies } from 'cookies-next';
 import Head from 'next/head';
-import { MantineProvider, ColorScheme, ColorSchemeProvider, AppShell, Button, Container, Group, Header, Text } from '@mantine/core';
+import { MantineProvider, ColorScheme, AppShell, Button, Container, Group, Header, Text } from '@mantine/core';
 import { NotificationsProvider } from '@mantine/notifications';
 import { CirclePlus } from 'tabler-icons-react';
 import { SearchInput } from '../components/SearchInput/SearchInput';
 import Link from 'next/link';
 import '../styles.css';
+import { useRouter } from 'next/router';
 
 export default function App(props: AppProps & { colorScheme: ColorScheme }) {
   const { Component, pageProps } = props;
-  const [colorScheme, setColorScheme] = useState<ColorScheme>(props.colorScheme);
+  const router = useRouter();
 
-  const toggleColorScheme = (value?: ColorScheme) => {
-    const nextColorScheme = value || (colorScheme === 'dark' ? 'light' : 'dark');
-    setColorScheme(nextColorScheme);
-    setCookies('mantine-color-scheme', nextColorScheme, { maxAge: 60 * 60 * 24 * 30 });
+  const onSearch = async (query: string) => {
+    // Redirect to queried home page
+    router.push({
+      pathname: '/',
+      query: {
+        q: query,
+      },
+    });
   };
 
   return (
@@ -28,38 +30,32 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
         <link rel="shortcut icon" href="/favicon.svg" />
       </Head>
 
-      <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
-        <MantineProvider theme={{ colorScheme }} withGlobalStyles withNormalizeCSS>
-          <NotificationsProvider>
-            <AppShell
-              padding="md"
-              header={
-                <Header height={60} p="xs">
-                  <Container>
-                    <Group style={{ justifyContent: 'center' }}>
-                      <Link href='/'><Text align='left'>React Global Summit 2022</Text></Link>
-                      <SearchInput />
-                      <Group position='right' noWrap>
-                        <Link href='/post/new'><Button leftIcon={<CirclePlus />}>Post new</Button></Link>
-                      </Group>
+      <MantineProvider withGlobalStyles withNormalizeCSS>
+        <NotificationsProvider>
+          <AppShell
+            padding="md"
+            header={
+              <Header height={60} p="xs">
+                <Container>
+                  <Group style={{ justifyContent: 'center' }}>
+                    <Link href='/'><Text align='left'>React Global Summit 2022</Text></Link>
+                    <SearchInput onSearch={onSearch} />
+                    <Group position='right' noWrap>
+                      <Link href='/post/new'><Button leftIcon={<CirclePlus />}>Post new</Button></Link>
                     </Group>
-                  </Container>
-                </Header>
-              }
-              styles={(theme) => ({
-                main: { backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0] },
-              })}
-            >
-              <Component {...pageProps} />
+                  </Group>
+                </Container>
+              </Header>
+            }
+            styles={(theme) => ({
+              main: { backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0] },
+            })}
+          >
+            <Component {...pageProps} />
 
-            </AppShell>
-          </NotificationsProvider>
-        </MantineProvider>
-      </ColorSchemeProvider>
+          </AppShell>
+        </NotificationsProvider>
+      </MantineProvider>
     </>
   );
 }
-
-App.getInitialProps = ({ ctx }: { ctx: GetServerSidePropsContext }) => ({
-  colorScheme: getCookie('mantine-color-scheme', ctx) || 'light',
-});

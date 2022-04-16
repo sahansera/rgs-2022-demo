@@ -10,7 +10,7 @@ export default function ViewPost({ }) {
   let [post, setPost] = useState<Post>();
 
   const getPost = async () => {
-    const response = await axios.get(`/api/post/view?id=${id}`);
+    const response = await axios.get(`/api/post?q=${id}`);
     setPost(response.data[0]);
   }
 

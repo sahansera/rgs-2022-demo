@@ -3,19 +3,23 @@ import { ResultCard } from '../components/ResultCard/ResultCard';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Post } from '../models/post';
+import { useRouter } from 'next/router';
 
 export default function HomePage() {
+
+  const { query } = useRouter();
 
   let [cards, setCards] = useState<Post[] | undefined>(undefined);
 
   const fetchData = async () => {
-    const posts = await axios.get('/api/indexer');
+    const qStr = query.q ? query.q : '*';
+    const posts = await axios.get(`/api/post?q=${qStr}`);
     setCards(posts.data);
   }
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [query.q]);
 
   return (
     <>
