@@ -40,7 +40,7 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
                       <Link href='/'><Text align='left'>React Global Summit 2022</Text></Link>
                       <SearchInput />
                       <Group position='right' noWrap>
-                        <Link href='post/new'><Button leftIcon={<CirclePlus />}>Post new</Button></Link>
+                        <Link href='/post/new'><Button leftIcon={<CirclePlus />}>Post new</Button></Link>
                       </Group>
                     </Group>
                   </Container>
