@@ -17,10 +17,7 @@ export function SearchInput(): JSX.Element {
   function search(event: any) {
     if (event.key !== "Enter") { return; }
 
-    // console.log(event);
-    // searchClient.search("*").then(result => {
-    //   console.log(result);
-    // });
+
   }
 
   return (

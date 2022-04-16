@@ -1,37 +1,47 @@
-import { AzureKeyCredential, SearchClient } from '@azure/search-documents';
 import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios';
+import { AzureNamedKeyCredential, TableClient } from '@azure/data-tables';
+const entityType = 'posts';
 
+// Search related keys
 const searchUrl = process.env.SEARCH_URL || '';
-const searchAdminKey = process.env.SEARCH_ADMIN_KEY || '';
-const searchIndex = 'posts';
+const searchKey = process.env.SEARCH_KEY || '';
 
-const searchClient = new SearchClient(
-  searchUrl,
-  searchIndex,
-  new AzureKeyCredential(searchAdminKey)
+// DB related keys
+const tablesEndpoint = process.env.DB_ENDPOINT || '';
+const dbAccountName = process.env.DB_ACCOUNT_NAME || '';
+const dbAccountKey = process.env.DB_ACCOUNT_KEY || '';
+
+const tableClient = new TableClient(
+  `${tablesEndpoint}/${entityType}`,
+  entityType,
+  new AzureNamedKeyCredential(dbAccountName, dbAccountKey)
 );
 
 export default async function handler(req: any, res: any) {
   async function createPost() {
     const { title, content } = req.body;
     const id = uuidv4();
-    const post = {
-      id,
-      title,
-      content,
+    const post: any = {
+      partitionKey: 'post',
+      rowKey: id,
+      id: id,
+      title: title,
+      content: content,
     };
-    await searchClient.uploadDocuments([post]);
+
+    await tableClient.createEntity(post);
+
     return id;
   }
 
   async function getPosts() {
     const response = await axios.get(
-      `${searchUrl}/indexes/${searchIndex}/docs?api-version=2019-05-06&search=*`,
+      `${searchUrl}/indexes/${entityType}/docs?api-version=2021-04-30-Preview&search=*`,
       {
         headers: {
           'Content-Type': 'application/json',
-          'api-key': searchAdminKey,
+          'api-key': searchKey,
         },
       }
     );

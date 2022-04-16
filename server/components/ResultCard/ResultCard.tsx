@@ -1,4 +1,5 @@
 import { Card, Group, Button, useMantineTheme, Image, Text } from "@mantine/core";
+import { useRouter } from "next/router";
 import { Post } from "../../models/post";
 
 type Props = {
@@ -7,11 +8,16 @@ type Props = {
 
 export function ResultCard({ data }: Props) {
 
+  const router = useRouter();
   const theme = useMantineTheme();
 
   const secondaryColor = theme.colorScheme === 'dark'
     ? theme.colors.dark[1]
     : theme.colors.gray[7];
+
+  function viewPost() {
+    router.replace(`/post/${data.id}`);
+  }
 
   return (
     <Card shadow="sm" p="lg">
@@ -27,7 +33,7 @@ export function ResultCard({ data }: Props) {
         {data.content}
       </Text>
 
-      <Button variant="light" color="blue" fullWidth style={{ marginTop: 14 }}>
+      <Button variant="light" color="blue" fullWidth style={{ marginTop: 14 }} onClick={() => viewPost()}>
         View
       </Button>
     </Card>

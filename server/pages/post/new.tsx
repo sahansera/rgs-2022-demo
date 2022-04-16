@@ -2,13 +2,16 @@ import { Box, Button, Group, Textarea, TextInput } from "@mantine/core";
 import { useForm } from "@mantine/hooks";
 import { showNotification, updateNotification } from "@mantine/notifications";
 import { CircleCheck } from 'tabler-icons-react';
-
+import { useRouter } from 'next/router';
 const url = "/api/indexer";
+import { v4 as uuidv4 } from 'uuid';
 
 export default function NewPost() {
+  const router = useRouter()
 
   const form = useForm({
     initialValues: {
+      id: uuidv4(),
       title: '',
       content: '',
     },
@@ -16,19 +19,37 @@ export default function NewPost() {
 
   type FormValues = typeof form.values;
 
+  function notifyUser(shouldUpdate?: boolean) {
+    if (shouldUpdate) {
+      const data = {
+        id: 'load-data',
+        color: 'teal',
+        title: 'Post Successful',
+        message: 'Notification will close in 2 seconds, you can close this notification now',
+        icon: <CircleCheck />,
+        autoClose: 2000,
+      };
+      updateNotification(data);
+    } else {
+      const data = {
+        id: 'load-data',
+        loading: true,
+        title: 'Posting...',
+        message: 'Data will be loaded in 3 seconds',
+        autoClose: false,
+        disallowClose: true,
+      };
+      showNotification(data);
+    }
+  }
+
   async function handleSubmit(values: FormValues) {
 
-    showNotification({
-      id: 'load-data',
-      loading: true,
-      title: 'Posting...',
-      message: 'Data will be loaded in 3 seconds, you cannot close this yet',
-      autoClose: false,
-      disallowClose: true,
-    });
+    notifyUser();
 
     // POST data to the api/indexer
     const data = {
+      id: values.id,
       title: values.title,
       content: values.content,
     };
@@ -41,18 +62,10 @@ export default function NewPost() {
       body: JSON.stringify(data),
     });
 
-    updateNotification({
-      id: 'load-data',
-      color: 'teal',
-      title: 'Data was loaded',
-      message: 'Notification will close in 2 seconds, you can close this notification now',
-      icon: <CircleCheck />,
-      autoClose: 2000,
-    });
+    notifyUser(true);
 
     // redirect to home
-    window.location.href = '/';
-
+    router.push('/');
   }
 
   return (
