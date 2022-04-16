@@ -7,7 +7,7 @@ export function Welcome() {
   return (
     <>
 
-      {/* <Title className={classes.title} align="center" mt={100}>
+      <Title className={classes.title} align="center" mt={100}>
         Welcome to{' '}
         <Text inherit variant="gradient" component="span">
           Mantine
@@ -20,7 +20,7 @@ export function Welcome() {
           this guide
         </Anchor>
         . To get started edit index.tsx file.
-      </Text> */}
+      </Text>
     </>
   );
 }

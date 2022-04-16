@@ -8,6 +8,7 @@ import { NotificationsProvider } from '@mantine/notifications';
 import { CirclePlus } from 'tabler-icons-react';
 import { SearchInput } from '../components/SearchInput/SearchInput';
 import Link from 'next/link';
+import '../styles.css';
 
 export default function App(props: AppProps & { colorScheme: ColorScheme }) {
   const { Component, pageProps } = props;
@@ -36,7 +37,7 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
                 <Header height={60} p="xs">
                   <Container>
                     <Group>
-                      <Link href='/'><Text align='left'>Blog Demo</Text></Link>
+                      <Link href='/'><Text align='left'>React Global Summit 2022</Text></Link>
                       <SearchInput />
                       <Group position='right' noWrap>
                         <Link href='post/new'><Button leftIcon={<CirclePlus />}>Post new</Button></Link>

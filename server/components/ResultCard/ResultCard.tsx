@@ -1,10 +1,11 @@
 import { Card, Group, Button, useMantineTheme, Image, Text } from "@mantine/core";
+import { Post } from "../../models/post";
 
 type Props = {
-  id: number;
+  data: Post;
 }
 
-export function ResultCard({ id }: Props) {
+export function ResultCard({ data }: Props) {
 
   const theme = useMantineTheme();
 
@@ -15,16 +16,15 @@ export function ResultCard({ id }: Props) {
   return (
     <Card shadow="sm" p="lg">
       <Card.Section>
-        <Image src={`https://picsum.photos/200/300?random=${id}`} height={160} alt="Norway" />
+        <Image src={`https://picsum.photos/200/300?random=${data.id}`} height={160} alt="Norway" />
       </Card.Section>
 
       <Group position="apart" style={{ marginBottom: 5, marginTop: theme.spacing.sm }}>
-        <Text weight={500}>Norway Fjord Adventures</Text>
+        <Text weight={500}>{data.title}</Text>
       </Group>
 
       <Text size="sm" style={{ color: secondaryColor, lineHeight: 1.5 }}>
-        With Fjord Tours you can explore more of the magical fjord landscapes with tours and
-        activities on and around the fjords of Norway
+        {data.content}
       </Text>
 
       <Button variant="light" color="blue" fullWidth style={{ marginTop: 14 }}>

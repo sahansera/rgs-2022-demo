@@ -1,22 +1,26 @@
+import { SearchClient, AzureKeyCredential } from '@azure/search-documents';
 import { SimpleGrid } from '@mantine/core';
 import { ResultCard } from '../components/ResultCard/ResultCard';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { Post } from '../models/post';
 
 export default function HomePage() {
-  function createCards() {
-    const cards = [];
-    for (let i = 0; i < 10; i++) {
-      let val = Math.floor(Math.random() * Math.floor(10));
-      cards.push(
-        <ResultCard key={i} id={val} />
-      );
+
+  let [cards, setCards] = useState<Post[]>([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const posts = await axios.get('/api/indexer');
+      setCards(posts.data);
     }
-    return cards;
-  }
+    fetchData();
+  });
 
   return (
     <>
       <SimpleGrid cols={3}>
-        {createCards()}
+        {cards && cards.map(card => <ResultCard key={card.id} data={card} />)}
       </SimpleGrid>
     </>
   );
