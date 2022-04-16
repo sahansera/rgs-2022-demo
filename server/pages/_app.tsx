@@ -36,7 +36,7 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
               header={
                 <Header height={60} p="xs">
                   <Container>
-                    <Group>
+                    <Group style={{ justifyContent: 'center' }}>
                       <Link href='/'><Text align='left'>React Global Summit 2022</Text></Link>
                       <SearchInput />
                       <Group position='right' noWrap>
