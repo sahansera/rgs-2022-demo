@@ -11,12 +11,8 @@ export function ResultCard({ data }: Props) {
   const router = useRouter();
   const theme = useMantineTheme();
 
-  const secondaryColor = theme.colorScheme === 'dark'
-    ? theme.colors.dark[1]
-    : theme.colors.gray[7];
-
   function viewPost() {
-    router.replace(`/post/${data.id}`);
+    router.push(`/post/${data.id}`);
   }
 
   return (
@@ -29,7 +25,7 @@ export function ResultCard({ data }: Props) {
         <Text weight={500}>{data.title}</Text>
       </Group>
 
-      <Text size="sm" style={{ color: secondaryColor, lineHeight: 1.5 }}>
+      <Text size="sm" style={{ lineHeight: 1.5 }}>
         {data.content}
       </Text>
 

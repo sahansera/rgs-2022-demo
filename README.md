@@ -25,6 +25,9 @@ To start the development server:
 cd src && yarn && yarn dev
 ```
 
+## Architecture
+![rgs22-architecture](./docs/rgs22-architecture.jpg)
+
 ## Link to the talk's slide:
 
 [SpeakerDeck]()
