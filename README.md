@@ -4,8 +4,8 @@ This is the demo code I presented at the [React Global Summt 2022](https://event
 ## Quickstart
 
 Make sure to provision the following in Azure:
-1. Azure Cognitive Search
-2. Azure Storage account
+1. [Azure Cognitive Search](https://azure.microsoft.com/en-au/services/search/)
+2. [Azure Storage account](https://docs.microsoft.com/en-us/azure/storage/common/storage-account-create?tabs=azure-portal)
 
 Then update the configuration in a .env.local file.
 
