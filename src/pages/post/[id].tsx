@@ -26,13 +26,13 @@ export default function ViewPost({ }) {
             {post?.title}
           </Title>
           <Text mb={15} size="sm">{post?.content}</Text>
-          <Title my={15} order={3}>Organizations</Title>
+          <Title my={15} order={3}>🏢 Organizations</Title>
           {post?.organizations?.map((org, i) => <Badge key={`org_${i}`}>{org}</Badge>)}
-          <Title my={15} order={3}>Locations</Title>
+          <Title my={15} order={3}>📍 Locations</Title>
           {post?.locations?.map((loc, i) => <Badge key={`loc_${i}`} color={'teal'}>{loc}</Badge>)}
-          <Title my={15} order={3}>People</Title>
+          <Title my={15} order={3}>🧑 People</Title>
           {post?.people?.map((p, i) => <Badge key={`p_${i}`} color={'grape'}>{p}</Badge>)}
-          <Title my={15} order={3}>Keyphrases</Title>
+          <Title my={15} order={3}>💡 Keyphrases</Title>
           {post?.keyphrases?.map((k, i) => <Badge key={`k_${i}`} color={'green'}>{k}</Badge>)}
         </Box>
       </Skeleton>
