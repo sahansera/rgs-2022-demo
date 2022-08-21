@@ -30,4 +30,4 @@ cd src && yarn && yarn dev
 
 ## Link to the talk's slide:
 
-[SpeakerDeck]()
+[SpeakerDeck](https://speakerdeck.com/sahansera/infusingintelligence)
