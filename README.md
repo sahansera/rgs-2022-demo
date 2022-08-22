@@ -1,5 +1,5 @@
 # React Global Summit 2022 (Demo)
-This is the demo code I presented at the [React Global Summt 2022](https://events.geekle.us/react2/).
+This is the demo code I presented at the [React Global Summt 2022](https://events.geekle.us/react2/). You can find the accompanying blog post [here](https://sahansera.dev/adding-intelligence-react-azure-cognitive/).
 
 ## Quickstart
 
