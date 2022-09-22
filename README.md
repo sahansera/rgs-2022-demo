@@ -1,7 +1,7 @@
-# React Global Summit 2022 (Demo)
+# Adding intelligence to React Apps with Azure Cognitive Services
 This is the demo code I presented at the [React Global Summt 2022](https://events.geekle.us/react2/). You can find the accompanying blog post [here](https://sahansera.dev/adding-intelligence-react-azure-cognitive/).
 
-## Quickstart
+## Quickstart 🚀
 
 Make sure to provision the following in Azure:
 1. [Azure Cognitive Search](https://azure.microsoft.com/en-au/services/search/)
@@ -25,9 +25,10 @@ To start the development server:
 cd src && yarn && yarn dev
 ```
 
-## Architecture
+## Architecture 🏗
+
 ![rgs22-architecture](./docs/rgs22-architecture.jpg)
 
-## Link to the talk's slide:
+## Talk's slides 🛝 
 
 [SpeakerDeck](https://speakerdeck.com/sahansera/infusingintelligence)
